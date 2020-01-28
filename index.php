@@ -28,21 +28,40 @@ echo voiture::nbre_roue;
     <title>Document</title>
 </head>
 <body>
+<?php
+
+        $nom=htmlspecialchars($_POST["nom"]);
+        $prenom=htmlspecialchars($_POST["prenom"]);
+        $email=htmlspecialchars($_POST["email"]);
+        $tel=htmlspecialchars($_POST['tel']);
+        $password=password_hash($_POST['mdp'],PASSWORD_DEFAULT);
+      var_dump($_POST);
+      var_dump($password);
+      $data = array();
+    $data["name"]  = $nom;
+    $data["prenom"]  = $prenom;
+    $data["email"] = $email;
+    $data["tel"] = $tel;
+    $data["password"] = $password;
+    file_put_contents('json/usersjson', json_encode( $data ));
+ if (isset($_POST['valider'])) {
+   
+    
+    
+var_dump($data);
+ }
+         
+
+?>
 <form action="" METHOD="post">
     <input type="text" name="nom" placeholder="entrez votre nom">
     <input type="text" name="prenom" placeholder="entrez votre prénom">
     <input type="email" name="email" placeholder="entrez votre email">
     <input type="number" name="tel" placeholder="entrez votre n° de telephone">
     <input type="password" name="mdp" placeholder="entrez votre mot de passe">
-    <button type="submit" name="inscription">s' inscrire</button>
+    <button type="submit" name="valider">s' inscrire</button>
 </form>
-<?php
 
-if (isset($_POST['inscription'])){
-
-
-}
-?>
 
 </body>
 </html>
